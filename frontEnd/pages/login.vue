@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import axios from 'axios'
+
 definePageMeta({
   layout: "centered",
 });
@@ -11,12 +13,12 @@ interface RegisterPayload {
 const form=ref({
   email:"",password:""
 })
-/*
+
 async function register(payload: RegisterPayload){
   const res = await axios.post("/api/login", payload)
   console.log(res)
 }
-*/
+
 
 </script>
 <template>
@@ -25,12 +27,12 @@ async function register(payload: RegisterPayload){
     <form>
       <label>
         <div>Email</div>
-        <input type="text" />
+        <input type="text" v-model="form.email"/>
       </label>
 
       <label>
         <div>Password</div>
-        <input type="password" />
+        <input type="password" v-model="form.password" />
       </label>
       <button class="btn">Login</button>
     </form>

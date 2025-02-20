@@ -11,7 +11,8 @@
             "driver": "MySQL",
             "name": "mysql",
             "database": "laravel",
-            "username": "sail"
+            "username": "sail",
+            "askForPassword": true
         }
     ]
 }
