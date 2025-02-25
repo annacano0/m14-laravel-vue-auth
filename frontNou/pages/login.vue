@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import axios from 'axios'
 
 definePageMeta({
   layout: "centered",
@@ -14,11 +13,7 @@ const form=ref({
   email:"",password:""
 })
 
-async function login(payload: loginPayload){
-  const res = await axios.post("/login", payload)
-  useRouter().push("/me")
-}
-
+const {login}=useAuth()
 
 </script>
 <template>
