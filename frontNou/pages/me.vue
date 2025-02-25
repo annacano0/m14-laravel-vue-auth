@@ -1,19 +1,10 @@
 <script  setup lang="ts">
-import axios from 'axios'
+import axios from "axios"
+const {data:user} = await axios.get("/user")
 
 definePageMeta({
   middleware:["auth"]
 })
-
-const user=ref({
-  name:"Anna",email:"anna@gmail.com"
-})
-
-async function getUser() {
-  const res = await axios.get("/user");
-  console.log(res);
-}
-
 </script>
 <template>
   <p><strong>User Name:</strong> {{user.name}}</p>
