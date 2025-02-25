@@ -1,6 +1,6 @@
 <script  setup lang="ts">
-import axios from "axios"
-const {data:user} = await axios.get("/user")
+
+const {user}=useAuth()
 
 definePageMeta({
   middleware:["auth"]
