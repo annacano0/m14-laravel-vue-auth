@@ -1,6 +1,7 @@
 import { AxiosError } from "axios"
 
 export default defineNuxtRouteMiddleware(async(to, from) => {
-    const {initUser}=useAuth()
-    initUser()
+    const {user, initUser}=useAuth()
+    await initUser()
+    if(!user.value) return navigateTo("/login")
 })

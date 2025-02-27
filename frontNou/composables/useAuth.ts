@@ -12,22 +12,27 @@ interface RegisterPayload {
 }
 
 interface User{
-    name:""
-    email:""
+    name:string;
+    email:string;
+    created_at:Date;
+    updated_at: Date;
+    email_verified_at:Date|null;
+    two_factor_confirmed_at:Date |null;
 }
 
-export var user=ref()
+export var user=ref<User|null>(null);
 
 
 export const useAuth=()=>{
     async function login(payload:LoginPayload){
         await axios.post("/login", payload)
+        getUser()
         useRouter().push("/me")
     }
 
     async function logout(){
         await axios.post("/logout")
-        user.value={}
+        user.value=null;
         useRouter().replace("/")
     }
 
@@ -37,9 +42,11 @@ export const useAuth=()=>{
         useRouter().push("/me")
     }
     async function getUser(): Promise<User|null>{
+        if(user.value) return user
         try{
             const res = await axios.get("/user");
-            const user = res.data;
+            console.log(res)
+            user.value = res.data;
             return {
                 ...user,
                 created_at: new Date(user.created_at),
